@@ -1,11 +1,11 @@
 from ._connection import (
-    FakeRedis,
-    FakeStrictRedis,
+    FakeValkey,
+    FakeStrictValkey,
     FakeConnection,
 )
 from ._server import FakeServer
 from .aioredis import (
-    FakeRedis as FakeAsyncRedis,
+    FakeValkey as FakeAsyncRedis,
     FakeConnection as FakeAsyncConnection,
 )
 
@@ -23,8 +23,8 @@ __bugtrack_url__ = "https://github.com/cunla/fakevalkey-py/issues"
 
 __all__ = [
     "FakeServer",
-    "FakeRedis",
-    "FakeStrictRedis",
+    "FakeValkey",
+    "FakeStrictValkey",
     "FakeConnection",
     "FakeAsyncRedis",
     "FakeAsyncConnection",

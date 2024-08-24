@@ -54,12 +54,12 @@ def test_xstream():
     entry_key: bytes = stream.add([0, 0, 1, 1, 2, 2, 3, 3])
     assert len(stream) == 1
     assert (
-        stream.delete(
-            [
-                entry_key,
-            ]
-        )
-        == 1
+            stream.delete(
+                [
+                    entry_key,
+                ]
+            )
+            == 1
     )
     assert len(stream) == 0
 
@@ -107,7 +107,7 @@ def test_xadd_maxlen(r: valkey.Redis):
     id_list.append(r.xadd(stream, {"k": "new"}, maxlen=maxlen, approximate=False))
     assert r.xlen(stream) == maxlen
     results = r.xrange(stream, id_list[0])
-    assert get_ids(results) == id_list[len(id_list) - maxlen :]
+    assert get_ids(results) == id_list[len(id_list) - maxlen:]
     with pytest.raises(valkey.ResponseError):
         testtools.raw_command(r, "xadd", stream, "maxlen", "3", "minid", "sometestvalue", "field", "value")
     assert r.set("non-a-stream", 1) == 1
@@ -358,20 +358,6 @@ def test_xgroup_destroy(r: valkey.Redis):
     assert r.xgroup_destroy(stream, group) == 1
 
 
-@pytest.mark.max_server("6.3")
-def test_xgroup_create_redis6(r: valkey.Redis):
-    stream, group = "stream", "group"
-    message_id = r.xadd(stream, {"foo": "bar"})
-    r.xgroup_create(stream, group, message_id)
-    r.xadd(stream, {"foo": "bar"})
-    res = r.xinfo_groups(stream)
-    assert len(res) == 1
-    assert res[0]["name"] == group.encode()
-    assert res[0]["consumers"] == 0
-    assert res[0]["pending"] == 0
-    assert res[0]["last-delivered-id"] == message_id
-
-
 @pytest.mark.min_server("7")
 def test_xgroup_create_redis7(r: valkey.Redis):
     stream, group = "stream", "group"
@@ -477,7 +463,7 @@ def test_xreadgroup(r: valkey.Redis):
     m1 = r.xadd(stream, c1)
     m2 = r.xadd(stream, c2)
     with pytest.raises(
-        valkey.exceptions.ResponseError, match=msgs.XREADGROUP_KEY_OR_GROUP_NOT_FOUND_MSG.format(stream, group)
+            valkey.exceptions.ResponseError, match=msgs.XREADGROUP_KEY_OR_GROUP_NOT_FOUND_MSG.format(stream, group)
     ):
         r.xreadgroup(group, consumer, streams={stream: ">"})
     r.xgroup_create(stream, group, 0)
@@ -702,36 +688,6 @@ def test_xpending_range_negative(r: valkey.Redis):
         r.xpending_range(stream, group, min=None, max=None, count=None, consumername=0)
 
 
-@pytest.mark.max_server("6.3")
-@testtools.run_test_if_redispy_ver("gte", "4.4")
-def test_xautoclaim_redis6(r: valkey.Redis):
-    stream, group, consumer1, consumer2 = "stream", "group", "consumer1", "consumer2"
-
-    message_id1 = r.xadd(stream, {"john": "wick"})
-    message_id2 = r.xadd(stream, {"johny": "deff"})
-    message = get_stream_message(r, stream, message_id1)
-    r.xgroup_create(stream, group, 0)
-
-    # trying to claim a message that isn't already pending doesn't
-    # do anything
-    assert r.xautoclaim(stream, group, consumer2, min_idle_time=0) == [b"0-0", []]
-
-    # read the group as consumer1 to initially claim the messages
-    r.xreadgroup(group, consumer1, streams={stream: ">"})
-
-    # claim one message as consumer2
-    response = r.xautoclaim(stream, group, consumer2, min_idle_time=0, count=1)
-    assert response[1] == [message]
-
-    # reclaim the messages as consumer1, but use the justid argument
-    # which only returns message ids
-    assert r.xautoclaim(stream, group, consumer1, min_idle_time=0, start_id=0, justid=True) == [
-        message_id1,
-        message_id2,
-    ]
-    assert r.xautoclaim(stream, group, consumer1, min_idle_time=0, start_id=message_id2, justid=True) == [message_id2]
-
-
 @pytest.mark.min_server("7")
 @testtools.run_test_if_redispy_ver("gte", "4.4")
 def test_xautoclaim_redis7(r: valkey.Redis):
@@ -815,8 +771,8 @@ def test_xclaim(r: valkey.Redis):
         message_ids=(message_id,),
         justid=True,
     ) == [
-        message_id,
-    ]
+               message_id,
+           ]
 
 
 def test_xread_blocking(create_redis):

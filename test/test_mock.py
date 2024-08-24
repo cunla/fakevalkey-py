@@ -2,7 +2,7 @@ from unittest.mock import patch
 
 import valkey
 
-from fakevalkey import FakeRedis
+from fakevalkey import FakeValkey
 
 
 def test_mock():
@@ -10,7 +10,7 @@ def test_mock():
     def bar(redis_host: str, redis_port: int):
         valkey.Redis(redis_host, redis_port)
 
-    with patch("valkey.Redis", FakeRedis):
+    with patch("valkey.Redis", FakeValkey):
         # Call function
         bar("localhost", 6000)
 

@@ -9,7 +9,7 @@ from fakevalkey._server import _create_version
 
 
 def _check_lua_module_supported() -> bool:
-    valkey = fakevalkey.FakeRedis(lua_modules={"cjson"})
+    valkey = fakevalkey.FakeValkey(lua_modules={"cjson"})
     try:
         valkey.eval("return cjson.encode({})", 0)
         return True
@@ -69,7 +69,7 @@ def _marker_version_value(request, marker_name: str):
     name="create_redis",
     params=[
         pytest.param("StrictValkey", marks=pytest.mark.real),
-        pytest.param("FakeStrictRedis", marks=pytest.mark.fake),
+        pytest.param("FakeStrictValkey", marks=pytest.mark.fake),
     ],
 )
 def _create_redis(request) -> Callable[[int], valkey.Valkey]:

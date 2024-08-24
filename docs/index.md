@@ -39,7 +39,7 @@ import pytest
 @pytest.fixture
 def redis_client(request):
     import fakeredis
-    redis_client = fakeredis.FakeRedis()
+    redis_client = fakeredis.FakeValkey()
     return redis_client
 ```
 
@@ -52,7 +52,7 @@ It does this by storing the state internally. For example:
 
 ```pycon
 >>> import fakeredis
->>> r = fakeredis.FakeStrictRedis(version=6)
+>>> r = fakeredis.FakeStrictValkey(version=6)
 >>> r.set('foo', 'bar')
 True
 >>> r.get('foo')
@@ -72,10 +72,10 @@ explicitly create one to share state:
 ```pycon
 >>> import fakeredis
 >>> server = fakeredis.FakeServer()
->>> r1 = fakeredis.FakeStrictRedis(server=server)
+>>> r1 = fakeredis.FakeStrictValkey(server=server)
 >>> r1.set('foo', 'bar')
 True
->>> r2 = fakeredis.FakeStrictRedis(server=server)
+>>> r2 = fakeredis.FakeStrictValkey(server=server)
 >>> r2.get('foo')
 'bar'
 >>> r2.set('bar', 'baz')
@@ -93,7 +93,7 @@ Set the connected attribute of the server to `False` after initialization.
 >>> import fakeredis
 >>> server = fakeredis.FakeServer()
 >>> server.connected = False
->>> r = fakeredis.FakeStrictRedis(server=server)
+>>> r = fakeredis.FakeStrictValkey(server=server)
 >>> r.set('foo', 'bar')
 ConnectionError: FakeRedis is emulating a connection error.
 >>> server.connected = True

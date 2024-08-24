@@ -264,7 +264,7 @@ def test_set_ex_overflow(r: valkey.Redis):
 
 def test_set_px_overflow(r: valkey.Redis):
     with pytest.raises(ResponseError):
-        r.set("foo", "bar", px=2**63 - 2)  # Overflows after adding current time
+        r.set("foo", "bar", px=2 ** 63 - 2)  # Overflows after adding current time
 
 
 def test_set_px(r: valkey.Redis):
@@ -366,14 +366,6 @@ def test_set_get_xx(r: valkey.Redis):
     assert raw_command(r, "set", "foo", "baz", "XX", "GET") == b"bar"
     assert r.get("foo") == b"baz"
     assert raw_command(r, "set", "foo", "baz", "GET") == b"baz"
-
-
-@pytest.mark.min_server("6.2")
-@pytest.mark.max_server("6.2.7")
-def test_set_get_nx_redis6(r: valkey.Redis):
-    # Note: this will most likely fail on a 7.0 server, based on the docs for SET
-    with pytest.raises(valkey.ResponseError):
-        raw_command(r, "set", "foo", "bar", "NX", "GET")
 
 
 @pytest.mark.min_server("7")

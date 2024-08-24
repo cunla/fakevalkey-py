@@ -35,11 +35,6 @@ class FakeConnection(FakeBaseConnectionMixin, valkey.Connection):
             return True
         if not self._sock:
             self.connect()
-        # We use check_can_read rather than can_read, because on redis-py<3.2,
-        # FakeSelector inherits from a stub BaseSelector which doesn't
-        # implement can_read. Normally can_read provides retries on EINTR,
-        # but that's not necessary for the implementation of
-        # FakeSelector.check_can_read.
         return self._selector is not None and self._selector.check_can_read(timeout)
 
     def _decode(self, response: Any) -> Any:
@@ -152,9 +147,9 @@ class FakeRedisMixin:
         return cls(connection_pool=pool)
 
 
-class FakeStrictRedis(FakeRedisMixin, valkey.StrictRedis):  # type: ignore
+class FakeStrictValkey(FakeRedisMixin, valkey.StrictRedis):  # type: ignore
     pass
 
 
-class FakeRedis(FakeRedisMixin, valkey.Redis):  # type: ignore
+class FakeValkey(FakeRedisMixin, valkey.Redis):  # type: ignore
     pass

@@ -295,8 +295,8 @@ def test_watch_state_is_cleared_across_multiple_watches(r: valkey.Redis):
 
 @pytest.mark.fake
 def test_socket_cleanup_watch(fake_server):
-    r1 = fakevalkey.FakeStrictRedis(server=fake_server)
-    r2 = fakevalkey.FakeStrictRedis(server=fake_server)
+    r1 = fakevalkey.FakeStrictValkey(server=fake_server)
+    r2 = fakevalkey.FakeStrictValkey(server=fake_server)
     pipeline = r1.pipeline(transaction=False)
     # This needs some poking into valkey-py internals to ensure that we reach
     # FakeSocket._cleanup. We need to close the socket while there is still
@@ -321,7 +321,7 @@ def test_get_within_pipeline(r: valkey.Redis):
 
 @pytest.mark.fake
 def test_get_within_pipeline_w_host():
-    r = fakevalkey.FakeRedis("localhost")
+    r = fakevalkey.FakeValkey("localhost")
     r.set("test", "foo")
     r.set("test2", "foo2")
     expected_keys = set(r.keys())
@@ -333,7 +333,7 @@ def test_get_within_pipeline_w_host():
 
 @pytest.mark.fake
 def test_get_within_pipeline_no_args():
-    r = fakevalkey.FakeRedis()
+    r = fakevalkey.FakeValkey()
     r.set("test", "foo")
     r.set("test2", "foo2")
     expected_keys = set(r.keys())

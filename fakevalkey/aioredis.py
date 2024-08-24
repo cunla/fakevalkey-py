@@ -185,7 +185,7 @@ class FakeConnection(FakeBaseConnectionMixin, redis_async.Connection):
         return self.server_key
 
 
-class FakeRedis(redis_async.Valkey):
+class FakeValkey(redis_async.Valkey):
     def __init__(
         self,
         *,

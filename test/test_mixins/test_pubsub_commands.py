@@ -330,8 +330,8 @@ def test_pubsub_timeout(r, timeout_value):
 
 @pytest.mark.fake
 def test_socket_cleanup_pubsub(fake_server):
-    r1 = fakevalkey.FakeStrictRedis(server=fake_server)
-    r2 = fakevalkey.FakeStrictRedis(server=fake_server)
+    r1 = fakevalkey.FakeStrictValkey(server=fake_server)
+    r2 = fakevalkey.FakeStrictValkey(server=fake_server)
     ps = r1.pubsub()
     with ps:
         ps.subscribe("test")
@@ -398,22 +398,6 @@ def test_pubsub_help_redis71(r: valkey.Redis):
         b"    Return the number of subscribers for the specified shard level channel(s" b")",
         b"HELP",
         b"    Print this help.",
-    ]
-
-
-@pytest.mark.max_server("6.2.7")
-def test_pubsub_help_redis6(r: valkey.Redis):
-    assert testtools.raw_command(r, "PUBSUB HELP") == [
-        b"PUBSUB <subcommand> [<arg> [value] [opt] ...]. Subcommands are:",
-        b"CHANNELS [<pattern>]",
-        b"    Return the currently active channels matching a <pattern> (default: '*')" b".",
-        b"NUMPAT",
-        b"    Return number of subscriptions to patterns.",
-        b"NUMSUB [<channel> ...]",
-        b"    Return the number of subscribers for the specified channels, excluding",
-        b"    pattern subscriptions(default: no channels).",
-        b"HELP",
-        b"    Prints this help.",
     ]
 
 

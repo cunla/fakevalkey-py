@@ -17,7 +17,7 @@ Support for JSON commands (e.g., [`JSON.GET`][2]) is implemented using
 ```pycon
 >>> import fakeredis
 >>> from redis.commands.json.path import Path
->>> r = fakeredis.FakeStrictRedis()
+>>> r = fakeredis.FakeStrictValkey()
 >>> assert r.json().set("foo", Path.root_path(), {"x": "bar"}, ) == 1
 >>> r.json().get("foo")
 {'x': 'bar'}
@@ -43,7 +43,7 @@ You can install it using `pip install 'fakeredis[probabilistic]'`.
 
 ```pycon
 >>> import fakeredis
->>> r = fakeredis.FakeStrictRedis()
+>>> r = fakeredis.FakeStrictValkey()
 >>> r.bf().madd('key', 'v1', 'v2', 'v3') == [1, 1, 1]
 >>> r.bf().exists('key', 'v1')
 1
@@ -59,7 +59,7 @@ You can install it using `pip install 'fakeredis[probabilistic]'`.
 
 ```pycon
 >>> import fakeredis
->>> r = fakeredis.FakeStrictRedis()
+>>> r = fakeredis.FakeStrictValkey()
 >>> r.cms().initbydim("cmsDim", 100, 5)
 OK
 >>> r.cms().incrby("cmsDim", ["foo"], [3])
@@ -91,7 +91,7 @@ you can use the `lua_modules` parameter.
 
 ```pycon
 >>> import fakeredis
->>> r = fakeredis.FakeStrictRedis(lua_modules={"my_module.so"})
+>>> r = fakeredis.FakeStrictValkey(lua_modules={"my_module.so"})
 ```
 
 The module `.so`/`.dll` file should be in the working directory.

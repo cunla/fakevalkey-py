@@ -23,14 +23,6 @@ def test_zadd_empty(r: valkey.Redis):
         r.zadd("foo", {})
 
 
-@pytest.mark.max_server("6.2.7")
-def test_zadd_minus_zero_redis6(r: valkey.Redis):
-    # Changing -0 to +0 is ignored
-    r.zadd("foo", {"a": -0.0})
-    r.zadd("foo", {"a": 0.0})
-    assert raw_command(r, "zscore", "foo", "a") == b"-0"
-
-
 @pytest.mark.min_server("7")
 def test_zadd_minus_zero_redis7(r: valkey.Redis):
     r.zadd("foo", {"a": -0.0})

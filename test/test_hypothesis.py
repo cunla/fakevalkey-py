@@ -255,7 +255,7 @@ class CommonMachine(hypothesis.stateful.RuleBasedStateMachine):
         if self.real.info("server").get("arch_bits") != 64:
             self.real.connection_pool.disconnect()
             pytest.skip("valkey server is not 64-bit")
-        self.fake = fakevalkey.FakeStrictRedis(server=fakevalkey.FakeServer(version=redis_ver), port=6380, db=2)
+        self.fake = fakevalkey.FakeStrictValkey(server=fakevalkey.FakeServer(version=redis_ver), port=6380, db=2)
         # Disable the response parsing so that we can check the raw values returned
         self.fake.response_callbacks.clear()
         self.real.response_callbacks.clear()

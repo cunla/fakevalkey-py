@@ -20,7 +20,7 @@ import json
 import os
 from typing import Any, List, Dict
 
-from fakeredis._commands import SUPPORTED_COMMANDS
+from fakevalkey._commands import SUPPORTED_COMMANDS
 from scripts.generate_supported_commands_doc import METADATA, download_single_stack_commands
 
 THIS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)))

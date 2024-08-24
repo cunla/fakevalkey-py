@@ -1,5 +1,5 @@
 scripts/*.json
-fakeredis.egg-info
+fakevalkey.egg-info
 dump.rdb
 extras/*
 .tox

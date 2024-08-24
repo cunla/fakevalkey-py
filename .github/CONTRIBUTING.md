@@ -34,7 +34,7 @@ maintainers and smooth out the experience for all involved. The community looks 
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the
-[fakeredis Code of Conduct](https://github.com/cunla/fakevalkey-py/blob/master/CODE_OF_CONDUCT.md).
+[fakevalkey Code of Conduct](https://github.com/cunla/fakevalkey-py/blob/master/CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code. Please report unacceptable behavior
 to <daniel@moransoftware.ca>.
 
@@ -135,7 +135,7 @@ Once it's filed:
 
 ### Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion for fakeredis, **including completely new features
+This section guides you through submitting an enhancement suggestion for fakevalkey, **including completely new features
 and minor improvements to existing functionality**. Following these guidelines will help maintainers and the community
 to understand your suggestion and find related suggestions.
 
@@ -168,7 +168,7 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/cunla/
   and Windows, and [this tool](https://github.com/colinkeenan/silentcast)
   or [this tool](https://github.com/GNOME/byzanz) on
   Linux. <!-- this should only be included if the project has a GUI -->
-- **Explain why this enhancement would be useful** to most fakeredis users. You may also want to point out the other
+- **Explain why this enhancement would be useful** to most fakevalkey users. You may also want to point out the other
   projects that solved it better and which could serve as inspiration.
 
 <!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
@@ -192,9 +192,9 @@ tutorials:
 - Let poetry install everything required for a local environment `poetry install`
 - To run all tests, use: `poetry run pytest -v`
 - Note: In order to run the tests, a real redis server should be running.
-  The tests are comparing the results of each command between fakeredis and a real redis.
+  The tests are comparing the results of each command between fakevalkey and a real redis.
     - You can use `docker-compose up redis6` or `docker-compose up redis7` to run redis.
-- Run test with coverage using `poetry run pytest -v --cov=fakeredis --cov-branch`
+- Run test with coverage using `poetry run pytest -v --cov=fakevalkey --cov-branch`
   and then you can run `coverage report`.
 
 ### Improving The Documentation

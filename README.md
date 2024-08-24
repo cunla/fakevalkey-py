@@ -1,21 +1,21 @@
-fakeredis: A fake version of a redis-py
+fakevalkey: A fake version of a valkey-py
 =======================================
 
-[![badge](https://img.shields.io/pypi/v/fakeredis)](https://pypi.org/project/fakeredis/)
+[![badge](https://img.shields.io/pypi/v/fakevalkey)](https://pypi.org/project/fakevalkey/)
 [![CI](https://github.com/cunla/fakevalkey-py/actions/workflows/test.yml/badge.svg)](https://github.com/cunla/fakevalkey-py/actions/workflows/test.yml)
-[![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/cunla/b756396efb895f0e34558c980f1ca0c7/raw/fakeredis-py.json)](https://github.com/cunla/fakevalkey-py/actions/workflows/test.yml)
-[![badge](https://img.shields.io/pypi/dm/fakeredis)](https://pypi.org/project/fakeredis/)
-[![badge](https://img.shields.io/pypi/l/fakeredis)](./LICENSE)
-[![Open Source Helpers](https://www.codetriage.com/cunla/fakeredis-py/badges/users.svg)](https://www.codetriage.com/cunla/fakeredis-py)
+[![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/cunla/b756396efb895f0e34558c980f1ca0c7/raw/fakevalkey-py.json)](https://github.com/cunla/fakevalkey-py/actions/workflows/test.yml)
+[![badge](https://img.shields.io/pypi/dm/fakevalkey)](https://pypi.org/project/fakevalkey/)
+[![badge](https://img.shields.io/pypi/l/fakevalkey)](./LICENSE)
+[![Open Source Helpers](https://www.codetriage.com/cunla/fakevalkey-py/badges/users.svg)](https://www.codetriage.com/cunla/fakevalkey-py)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 --------------------
 
 
-Documentation is hosted in https://fakeredis.readthedocs.io/
+Documentation is hosted in https://fakevalkey.readthedocs.io/
 
 # Intro
 
-FakeRedis is a pure-Python implementation of the Redis key-value store.
+FakeValkey is a pure-Python implementation of the Redis key-value store.
 
 It enables running tests requiring redis server without an actual server.
 
@@ -24,10 +24,10 @@ A built-in Redis server that is automatically installed, configured and managed 
 single server shared by multiple programs or multiple independent servers. All the servers provided by
 FakeRedis support all Redis functionality including advanced features such as RedisJson, GeoCommands.
 
-See [official documentation](https://fakeredis.readthedocs.io/) for list of supported commands.
+See [official documentation](https://fakevalkey.readthedocs.io/) for list of supported commands.
 
 # Sponsor
 
-fakeredis-py is developed for free.
+fakevalkey-py is developed for free.
 
 You can support this project by becoming a sponsor using [this link](https://github.com/sponsors/cunla).

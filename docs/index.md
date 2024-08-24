@@ -109,7 +109,7 @@ redis client for python, and models the responses of redis 6.x or 7.x.
 Async redis client is supported. Instead of using `fakeredis.FakeRedis`, use `fakeredis.aioredis.FakeRedis`.
 
 ```pycon
->>> from fakeredis import FakeAsyncRedis
+>>> from fakevalkey import FakeAsyncRedis
 >>> r1 = FakeAsyncRedis()
 >>> await r1.set('foo', 'bar')
 True
@@ -122,7 +122,7 @@ True
 Update your cache settings:
 
 ```python
-from fakeredis import FakeConnection
+from fakevalkey import FakeConnection
 
 CACHES = {
     'default': {
@@ -160,7 +160,7 @@ import django_rq
 # The connection must be the same because in fakeredis connections
 # do not share the state. Therefore, we define a singleton object to reuse it.
 def get_fake_connection(config: Dict[str, Any], strict: bool):
-    from fakeredis import FakeRedis, FakeStrictRedis
+    from fakevalkey import FakeRedis, FakeStrictRedis
     redis_cls = FakeStrictRedis if strict else FakeRedis
     if "URL" in config:
         return redis_cls.from_url(

@@ -82,7 +82,7 @@ pygithub = "^2.3"
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/cunla/fakevalkey-py/issues"
 "Funding" = "https://github.com/sponsors/cunla"
-"Documentation" = "https://fakeredis.moransoftware.ca/"
+"Documentation" = "https://fakevalkey.readthedocs.io/"
 
 [tool.pytest.ini_options]
 asyncio_default_fixture_loop_scope = "function"

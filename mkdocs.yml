@@ -1,11 +1,11 @@
 ---
-site_name: fakeredis
+site_name: fakevalkey
 site_author: Daniel Moran
 site_description: >-
-  Documentation for fakeredis python library
+  Documentation for fakevalkey python library
 # Repository
-repo_name: cunla/fakeredis
-repo_url: https://github.com/cunla/fakeredis
+repo_name: cunla/fakevalkey
+repo_url: https://github.com/cunla/fakevalkey
 
 # Copyright
 copyright: Copyright &copy; 2022 - 2023 Daniel Moran
@@ -38,7 +38,7 @@ markdown_extensions:
   - pymdownx.magiclink:
       repo_url_shorthand: true
       user: cunla
-      repo: fakeredis
+      repo: fakevalkey
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.superfences:

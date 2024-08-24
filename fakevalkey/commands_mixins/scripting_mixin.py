@@ -8,9 +8,9 @@ from typing import Callable, AnyStr, Set, Any, Tuple, List, Dict, Optional
 
 import lupa
 
-from fakeredis import _msgs as msgs
-from fakeredis._commands import command, Int, Signature
-from fakeredis._helpers import (
+from fakevalkey import _msgs as msgs
+from fakevalkey._commands import command, Int, Signature
+from fakevalkey._helpers import (
     SimpleError,
     SimpleString,
     null_terminate,

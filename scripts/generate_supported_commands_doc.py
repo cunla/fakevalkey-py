@@ -8,7 +8,7 @@ from dataclasses import dataclass
 
 import requests
 
-from fakeredis._commands import SUPPORTED_COMMANDS
+from fakevalkey._commands import SUPPORTED_COMMANDS
 
 IGNORE_COMMANDS = {
     'PUBSUB HELP', 'OBJECT HELP', 'FUNCTION HELP', 'SCRIPT HELP',

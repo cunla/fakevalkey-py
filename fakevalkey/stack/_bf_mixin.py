@@ -4,10 +4,10 @@ from typing import Any, List, Union
 
 from probables import ExpandingBloomFilter
 
-from fakeredis import _msgs as msgs
-from fakeredis._command_args_parsing import extract_args
-from fakeredis._commands import command, Key, CommandItem, Float, Int
-from fakeredis._helpers import SimpleError, OK, casematch, SimpleString
+from fakevalkey import _msgs as msgs
+from fakevalkey._command_args_parsing import extract_args
+from fakevalkey._commands import command, Key, CommandItem, Float, Int
+from fakevalkey._helpers import SimpleError, OK, casematch, SimpleString
 
 
 class ScalableBloomFilter(ExpandingBloomFilter):

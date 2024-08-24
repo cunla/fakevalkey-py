@@ -5,10 +5,10 @@ from typing import List, Any
 
 from probables import CountingCuckooFilter, CuckooFilterFullError
 
-from fakeredis import _msgs as msgs
-from fakeredis._command_args_parsing import extract_args
-from fakeredis._commands import command, CommandItem, Int, Key
-from fakeredis._helpers import SimpleError, OK, casematch, SimpleString
+from fakevalkey import _msgs as msgs
+from fakevalkey._command_args_parsing import extract_args
+from fakevalkey._commands import command, CommandItem, Int, Key
+from fakevalkey._helpers import SimpleError, OK, casematch, SimpleString
 
 
 class ScalableCuckooFilter(CountingCuckooFilter):

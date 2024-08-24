@@ -1,4 +1,4 @@
-# Code of Conduct — fakeredis
+# Code of Conduct — fakevalkey
 
 ## Our Pledge
 

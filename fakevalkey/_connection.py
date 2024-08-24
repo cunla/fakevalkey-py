@@ -74,7 +74,7 @@ class FakeConnection(FakeBaseConnectionMixin, valkey.Connection):
         return self.server_key
 
 
-class FakeRedisMixin:
+class FakeValkeyMixin:
     def __init__(
         self,
         *args: Any,
@@ -147,9 +147,9 @@ class FakeRedisMixin:
         return cls(connection_pool=pool)
 
 
-class FakeStrictValkey(FakeRedisMixin, valkey.StrictRedis):  # type: ignore
+class FakeStrictValkey(FakeValkeyMixin, valkey.StrictRedis):  # type: ignore
     pass
 
 
-class FakeValkey(FakeRedisMixin, valkey.Redis):  # type: ignore
+class FakeValkey(FakeValkeyMixin, valkey.Redis):  # type: ignore
     pass

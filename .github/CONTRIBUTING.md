@@ -1,6 +1,6 @@
 <!-- omit in toc -->
 
-# Contributing to fakeredis
+# Contributing to fakevalkey
 
 First off, thanks for taking the time to contribute! ❤️
 

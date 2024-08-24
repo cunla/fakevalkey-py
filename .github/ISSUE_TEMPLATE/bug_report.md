@@ -27,7 +27,7 @@ If applicable, add screenshots to help explain your problem.
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
  - python version
- - redis-py version
+ - valkey-py version
  - full requirements.txt?
 
 **Additional context**

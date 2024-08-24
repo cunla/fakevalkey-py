@@ -13,8 +13,8 @@ runs:
     - name: Test with coverage
       shell: bash
       run: |
-        poetry run flake8 fakeredis/
-        poetry run pytest -v --cov=fakeredis --cov-branch
+        poetry run flake8 fakevalkey/
+        poetry run pytest -v --cov=fakevalkey --cov-branch
         poetry run coverage json
         echo "COVERAGE=$(jq '.totals.percent_covered_display|tonumber' coverage.json)" >> $GITHUB_ENV
     - name: Create coverage badge
@@ -23,7 +23,7 @@ runs:
       with:
         auth: ${{ inputs.gist-secret }}
         gistID: b756396efb895f0e34558c980f1ca0c7
-        filename: fakeredis-py.json
+        filename: fakevalkey-py.json
         label: coverage
         message: ${{ env.COVERAGE }}%
         color: green

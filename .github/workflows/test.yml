@@ -33,20 +33,20 @@ jobs:
       - name: Run flake8
         shell: bash
         run: |
-          poetry run flake8 fakeredis/
+          poetry run flake8 fakevalkey/
       - name: Run black
         shell: bash
         run: |
-          poetry run black --check --verbose fakeredis test
+          poetry run black --check --verbose fakevalkey test
       - name: Test import
         run: |
           poetry build
-          pip install dist/fakeredis-*.tar.gz
-          python -c "import fakeredis"
+          pip install dist/fakevalkey-*.tar.gz
+          python -c "import fakevalkey"
   test:
     name: >
-      py:${{ matrix.python-version }},${{ matrix.redis-image }},
-      redis-py:${{ matrix.redis-py }},cov:${{ matrix.coverage }},
+      py:${{ matrix.python-version }},${{ matrix.valkey-image }},
+      valkey-py:${{ matrix.valkey-py }},cov:${{ matrix.coverage }},
       extra:${{matrix.extra}}
     needs:
       - "lint"
@@ -55,18 +55,13 @@ jobs:
       max-parallel: 8
       fail-fast: false
       matrix:
-        redis-image: [ "redis:6.2.14", "redis:7.0.15", "redis:7.2.4" ]
+        valkey-image: [ "valkey/valkey:8"]
         python-version: [ "3.8", "3.9", "3.10", "3.11", "3.12" ]
-        redis-py: [ "4.3.6", "4.6.0", "5.0.8", "5.1.0b7" ]
+        valkey-py: [ "6.0.0" ]
         include:
           - python-version: "3.12"
-            redis-image: "redis/redis-stack:6.2.6-v15"
-            redis-py: "5.0.8"
-            extra: true  # json, bf, lupa, cf
-            hypothesis: true
-          - python-version: "3.12"
-            redis-image: "redis/redis-stack-server:7.2.0-v11"
-            redis-py: "5.0.8"
+            valkey-image: "valkey/valkey:8"
+            valkey-py: "6.0.0"
             extra: true  # json, bf, lupa, cf
             coverage: true
             hypothesis: true
@@ -74,12 +69,12 @@ jobs:
     permissions:
       pull-requests: write
     services:
-      redis:
-        image: ${{ matrix.redis-image }}
+      valkey:
+        image: ${{ matrix.valkey-image }}
         ports:
           - 6380:6379
         options: >-
-          --health-cmd "redis-cli ping"
+          --health-cmd "valkey-cli ping"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -98,11 +93,11 @@ jobs:
           python -m pip --quiet install poetry
           echo "$HOME/.poetry/bin" >> $GITHUB_PATH
           poetry install
-          poetry run pip install redis==${{ matrix.redis-py }}
+          poetry run pip install valkey==${{ matrix.valkey-py }}
       - name: Install json
         if: ${{ matrix.extra }}
         run: |
-          poetry run pip install "fakeredis[json,bf,cf,lua]"
+          poetry run pip install "fakevalkey[json,bf,cf,lua]"
       - name: Get version
         id: getVersion
         shell: bash

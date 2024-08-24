@@ -1,0 +1,48 @@
+name: 'Run test with coverage'
+description: 'Greet someone'
+inputs:
+  github-secret:
+    description: 'GITHUB_TOKEN'
+    required: true
+  gist-secret:
+    description: 'gist secret'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Test with coverage
+      shell: bash
+      run: |
+        poetry run flake8 fakeredis/
+        poetry run pytest -v --cov=fakeredis --cov-branch
+        poetry run coverage json
+        echo "COVERAGE=$(jq '.totals.percent_covered_display|tonumber' coverage.json)" >> $GITHUB_ENV
+    - name: Create coverage badge
+      if: ${{ github.event_name == 'push' }}
+      uses: schneegans/dynamic-badges-action@v1.7.0
+      with:
+        auth: ${{ inputs.gist-secret }}
+        gistID: b756396efb895f0e34558c980f1ca0c7
+        filename: fakeredis-py.json
+        label: coverage
+        message: ${{ env.COVERAGE }}%
+        color: green
+    - name: Coverage report
+      if: ${{ github.event_name == 'pull_request' }}
+      id: coverage_report
+      shell: bash
+      run: |
+        echo 'REPORT<<EOF' >> $GITHUB_ENV
+        poetry run coverage report >> $GITHUB_ENV
+        echo 'EOF' >> $GITHUB_ENV
+    - uses: mshick/add-pr-comment@v2
+      if: ${{ github.event_name == 'pull_request' }}
+      with:
+        message: |
+          Coverage report:
+          ```
+          ${{ env.REPORT }}
+          ```
+        repo-token: ${{ inputs.github-secret }}
+        allow-repeats: false
+        message-id: coverage

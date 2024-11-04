@@ -9,7 +9,7 @@ packages = [
     { include = "fakevalkey" },
     { include = "LICENSE" },
 ]
-version = "0.0.1"
+version = "0.0.2"
 description = "Python implementation of valkey API, can be used for testing purposes."
 readme = "README.md"
 keywords = ["valkey", "testing"]
